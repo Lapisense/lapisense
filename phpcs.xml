@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="lapisense">
+    <description>The PSR-2 based coding standard for the Lapisense plugin.</description>
+    <rule ref="PSR2"/>
+    <file>./src</file>
+</ruleset>
