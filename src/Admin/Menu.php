@@ -4,6 +4,7 @@ namespace Lapisense\Admin;
 
 use Lapisense\Admin\Pages\ActivationsPage;
 use Lapisense\Admin\Pages\KeysPage;
+use Lapisense\Admin\Pages\MainPage;
 use Lapisense\Admin\Pages\Page;
 use Lapisense\Admin\Pages\SettingsPage;
 
@@ -57,6 +58,10 @@ class Menu
     public function pageDispatcher()
     {
         $pages = apply_filters('lapisense_admin_menu_pages', [
+            [
+                'slug' => 'lapisense',
+                'class' => MainPage::class,
+            ],
             [
                 'slug' => 'lapisense-keys',
                 'class' => KeysPage::class,
