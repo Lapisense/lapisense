@@ -2,6 +2,11 @@
 
 namespace Lapisense\Admin;
 
+use Lapisense\Admin\Pages\ActivationsPage;
+use Lapisense\Admin\Pages\KeysPage;
+use Lapisense\Admin\Pages\Page;
+use Lapisense\Admin\Pages\SettingsPage;
+
 class Menu
 {
     public function setup()
@@ -51,6 +56,30 @@ class Menu
 
     public function pageDispatcher()
     {
-        echo 'hello world';
+        $pages = apply_filters('lapisense_admin_menu_pages', [
+            [
+                'slug' => 'lapisense-keys',
+                'class' => KeysPage::class,
+            ],
+            [
+                'slug' => 'lapisense-activations',
+                'class' => ActivationsPage::class,
+            ],
+            [
+                'slug' => 'lapisense-settings',
+                'class' => SettingsPage::class,
+            ]
+        ]);
+
+        $currentPage = filter_input(INPUT_GET, 'page');
+
+        foreach( $pages as $page ) {
+            if ( $currentPage === $page['slug'] ) {
+                /** @var Page $pageHandler */
+                $pageHandler = new $page['class']();
+                $pageHandler->setup();
+                $pageHandler->output();
+            }
+        }
     }
 }
