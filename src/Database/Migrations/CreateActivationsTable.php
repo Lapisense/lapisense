@@ -24,14 +24,6 @@ class CreateActivationsTable extends BaseMigration
         $this->worker->query($query);
     }
 
-    /**
-     * $table->uuid('id');
-    $table->uuid('key_id');
-    $table->foreign('key_id')->references('id')->on('keys');
-    $table->timestamps();
-    $table->primary('id');
-     */
-
     public function down()
     {
         $tableName = $this->worker->getPrefix() . 'lapisense_activations';
