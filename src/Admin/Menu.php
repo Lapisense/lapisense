@@ -78,8 +78,8 @@ class Menu
 
         $currentPage = filter_input(INPUT_GET, 'page');
 
-        foreach( $pages as $page ) {
-            if ( $currentPage === $page['slug'] ) {
+        foreach ($pages as $page) {
+            if ($currentPage === $page['slug']) {
                 /** @var Page $pageHandler */
                 $pageHandler = new $page['class']();
                 $pageHandler->setup();
