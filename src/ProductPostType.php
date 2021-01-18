@@ -4,12 +4,12 @@ namespace Lapisense;
 
 class ProductPostType
 {
-    public function setup()
+    public function setup():void
     {
         add_action('init', [$this, 'registerPostType']);
     }
 
-    public function registerPostType()
+    public function registerPostType():void
     {
         $labels = array(
             'name'               => _x('Product', 'post type general name', 'lapisense'),

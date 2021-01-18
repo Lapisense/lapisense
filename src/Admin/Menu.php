@@ -10,12 +10,12 @@ use Lapisense\Admin\Pages\SettingsPage;
 
 class Menu
 {
-    public function setup()
+    public function setup():void
     {
         add_action('admin_menu', [$this, 'addMenu']);
     }
 
-    public function addMenu()
+    public function addMenu():void
     {
         add_menu_page(
             __('Lapisense', 'lapisense'),
@@ -55,7 +55,7 @@ class Menu
         );
     }
 
-    public function pageDispatcher()
+    public function pageDispatcher():void
     {
         $pages = apply_filters('lapisense_admin_menu_pages', [
             [

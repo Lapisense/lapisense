@@ -11,7 +11,7 @@ abstract class ListTable extends \WP_List_Table
      *
      * @return void
      */
-    public function prepare_items()
+    public function prepare_items():void
     {
         $columns = $this->get_columns();
         $sortable = $this->get_sortable_columns();
@@ -33,19 +33,19 @@ abstract class ListTable extends \WP_List_Table
         $this->items = $data;
     }
 
-    abstract public function getData();
+    abstract public function getData():array;
 
     /**
      * Defines the columns to use in your listing table.
      *
      * @return array
      */
-    public function get_columns()
+    public function get_columns():array
     {
         return $this->getColumns();
     }
 
-    abstract public function getColumns();
+    abstract public function getColumns(): array;
 
     /**
      * Define what data to show on each column of the table.
@@ -53,12 +53,12 @@ abstract class ListTable extends \WP_List_Table
      * @param object|array $item
      * @param string $column_name - Current column name
      *
-     * @return mixed
+     * @return string
      */
-    public function column_default($item, $column_name)
+    public function column_default($item, $column_name):string
     {
-        return $this->getColumnValue($item, $column_name);
+        return $this->getColumnValue((array) $item, $column_name);
     }
 
-    abstract public function getColumnValue($item, $column_name);
+    abstract public function getColumnValue(array $item, string $column_name): string;
 }

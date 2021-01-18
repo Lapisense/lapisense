@@ -6,7 +6,7 @@ use Lapisense\Contracts\ActivationsRepository as RepositoryContract;
 
 class ActivationsRepository implements RepositoryContract
 {
-    public function getDummyData()
+    public function getDummyData():array
     {
         return [
             [

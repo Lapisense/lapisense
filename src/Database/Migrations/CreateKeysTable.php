@@ -6,12 +6,12 @@ use Lapisense\Dependencies\CoenJacobs\Migrator\Migrations\BaseMigration;
 
 class CreateKeysTable extends BaseMigration
 {
-    public static function id()
+    public static function id():string
     {
         return 'lapisense-1-licenses-table';
     }
 
-    public function up()
+    public function up():void
     {
         $tableName = $this->worker->getPrefix() . 'lapisense_keys';
 
@@ -24,7 +24,7 @@ class CreateKeysTable extends BaseMigration
         $this->worker->query($query);
     }
 
-    public function down()
+    public function down():void
     {
         $tableName = $this->worker->getPrefix() . 'lapisense_keys';
 

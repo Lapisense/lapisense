@@ -7,7 +7,7 @@ use Lapisense\Database\Repositories\ActivationsRepository;
 
 class ActivationsPage extends Page
 {
-    public function output()
+    public function output():void
     {
         $table = new ActivationsTable();
         $table->setRepository(new ActivationsRepository());

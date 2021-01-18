@@ -7,7 +7,7 @@ class Bootstrap
     /** @var Menu */
     public $menu;
 
-    public function setup()
+    public function setup():void
     {
         $this->menu = new Menu();
         $this->menu->setup();

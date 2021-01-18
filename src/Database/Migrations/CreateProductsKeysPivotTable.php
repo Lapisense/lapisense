@@ -6,12 +6,12 @@ use Lapisense\Dependencies\CoenJacobs\Migrator\Migrations\BaseMigration;
 
 class CreateProductsKeysPivotTable extends BaseMigration
 {
-    public static function id()
+    public static function id():string
     {
         return 'lapisense-3-products-keys-pivot-table';
     }
 
-    public function up()
+    public function up():void
     {
         $tableName = $this->worker->getPrefix() . 'lapisense_products_keys';
         $productsTable = $this->worker->getPrefix() . 'posts';
@@ -26,7 +26,7 @@ class CreateProductsKeysPivotTable extends BaseMigration
         $this->worker->query($query);
     }
 
-    public function down()
+    public function down():void
     {
         $tableName = $this->worker->getPrefix() . 'lapisense_products_keys';
 

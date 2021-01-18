@@ -9,12 +9,12 @@ class KeysTable extends ListTable
     /** @var KeysRepository */
     protected $repository;
 
-    public function setRepository(KeysRepository $repository)
+    public function setRepository(KeysRepository $repository):void
     {
         $this->repository = $repository;
     }
 
-    public function getData()
+    public function getData():array
     {
         return $this->repository->getDummyData();
     }
@@ -24,7 +24,7 @@ class KeysTable extends ListTable
      *
      * @return array
      */
-    public function getColumns()
+    public function getColumns():array
     {
         return [
             'id' => 'ID',
@@ -40,9 +40,9 @@ class KeysTable extends ListTable
      * @param array $item Data
      * @param string $column_name - Current column name
      *
-     * @return mixed
+     * @return string
      */
-    public function getColumnValue($item, $column_name)
+    public function getColumnValue(array $item, string $column_name):string
     {
         switch ($column_name) {
             case 'id':
