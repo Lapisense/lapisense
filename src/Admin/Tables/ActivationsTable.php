@@ -6,7 +6,10 @@ use Lapisense\Contracts\ActivationsRepository;
 
 class ActivationsTable extends ListTable
 {
-    /** @var ActivationsRepository */
+    /**
+     * @var ActivationsRepository
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $repository;
 
     public function setRepository(ActivationsRepository $repository):void

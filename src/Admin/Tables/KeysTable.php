@@ -6,7 +6,10 @@ use Lapisense\Contracts\KeysRepository;
 
 class KeysTable extends ListTable
 {
-    /** @var KeysRepository */
+    /**
+     * @var KeysRepository
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $repository;
 
     public function setRepository(KeysRepository $repository):void
