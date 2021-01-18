@@ -6,15 +6,18 @@ use Lapisense\Contracts\ActivationsRepository;
 
 class ActivationsTable extends ListTable
 {
-    /** @var ActivationsRepository */
+    /**
+     * @var ActivationsRepository
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $repository;
 
-    public function setRepository(ActivationsRepository $repository)
+    public function setRepository(ActivationsRepository $repository):void
     {
         $this->repository = $repository;
     }
 
-    public function getData()
+    public function getData():array
     {
         return $this->repository->getDummyData();
     }
@@ -24,7 +27,7 @@ class ActivationsTable extends ListTable
      *
      * @return array
      */
-    public function getColumns()
+    public function getColumns():array
     {
         return [
             'id' => 'ID',
@@ -39,9 +42,9 @@ class ActivationsTable extends ListTable
      * @param array $item Data
      * @param string $column_name - Current column name
      *
-     * @return mixed
+     * @return string
      */
-    public function getColumnValue($item, $column_name)
+    public function getColumnValue(array $item, string $column_name):string
     {
         switch ($column_name) {
             case 'id':

@@ -4,5 +4,5 @@ namespace Lapisense\Contracts;
 
 interface ActivationsRepository
 {
-    public function getDummyData();
+    public function getDummyData():array;
 }

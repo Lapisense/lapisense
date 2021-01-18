@@ -11,7 +11,7 @@ use Lapisense\Dependencies\CoenJacobs\Migrator\Workers\WpdbWorker;
 
 class Installer
 {
-    public static function install()
+    public static function install():void
     {
         global $wpdb;
         $worker = new WpdbWorker();

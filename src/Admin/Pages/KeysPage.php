@@ -7,7 +7,7 @@ use Lapisense\Database\Repositories\KeysRepository;
 
 class KeysPage extends Page
 {
-    public function output()
+    public function output():void
     {
         $table = new KeysTable();
         $table->setRepository(new KeysRepository());

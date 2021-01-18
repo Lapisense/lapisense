@@ -6,7 +6,7 @@ use Lapisense\Contracts\KeysRepository as RepositoryContract;
 
 class KeysRepository implements RepositoryContract
 {
-    public function getDummyData()
+    public function getDummyData():array
     {
         return [
             [

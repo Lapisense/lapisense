@@ -12,12 +12,15 @@ class Plugin
     /** @var ProductPostType */
     public $productPostType;
 
-    public function setup()
+    public function __construct()
     {
         $this->admin = new Bootstrap();
-        $this->admin->setup();
-
         $this->productPostType = new ProductPostType();
+    }
+
+    public function setup():void
+    {
+        $this->admin->setup();
         $this->productPostType->setup();
     }
 }
