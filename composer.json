@@ -14,12 +14,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {
-    },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
         "coenjacobs/mozart": "^0.4.0",
-        "coenjacobs/migrator": "^0.2.0"
+        "coenjacobs/migrator": "^0.2.0",
+        "vimeo/psalm": "^4.4"
     },
     "extra": {
         "mozart": {
