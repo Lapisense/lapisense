@@ -50,7 +50,7 @@ abstract class ListTable extends \WP_List_Table
     /**
      * Define what data to show on each column of the table.
      *
-     * @param array $item Data
+     * @param object|array $item
      * @param string $column_name - Current column name
      *
      * @return mixed
