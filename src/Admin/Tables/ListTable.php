@@ -6,6 +6,14 @@ namespace Lapisense\Admin\Tables;
 
 abstract class ListTable extends \WP_List_Table
 {
+    public function __construct(array $args = array())
+    {
+        $this->items = array();
+        $this->_column_headers = array();
+
+        parent::__construct();
+    }
+
     /**
      * Prepare the items for the table to process
      *
@@ -33,7 +41,7 @@ abstract class ListTable extends \WP_List_Table
         $this->items = $data;
     }
 
-    abstract public function getData():array;
+    abstract public function getData(): array;
 
     /**
      * Defines the columns to use in your listing table.
