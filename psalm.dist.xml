@@ -10,8 +10,9 @@
     <projectFiles>
         <directory name="src" />
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="classes" />
             <directory name="src/Dependencies" />
+            <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
 </psalm>

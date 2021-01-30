@@ -1,5 +1,6 @@
 {
     "name": "coenjacobs/lapisense",
+    "description": "Powerful, yet flexible, licensing plugin for your WordPress based software website.",
     "type": "project",
     "authors": [
         {
@@ -21,8 +22,15 @@
     "require-dev": {
         "php": "^7.3|^8.0",
         "squizlabs/php_codesniffer": "^3.5",
-        "coenjacobs/mozart": "^0.6.0",
-        "vimeo/psalm": "^4.4"
+        "vimeo/psalm": "^4.4",
+        "lucatume/wp-browser": "3.0.5.1",
+        "codeception/module-asserts": "^1.3",
+        "codeception/module-phpbrowser": "^1.0",
+        "codeception/module-webdriver": "^1.2",
+        "codeception/module-db": "^1.1",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/module-cli": "^1.1",
+        "codeception/util-universalframework": "^1.0"
     },
     "extra": {
         "mozart": {
@@ -37,13 +45,54 @@
         }
     },
     "scripts": {
+        "test": [
+            "@test:composer",
+            "@test:phpcs"
+        ],
+        "fix": [
+            "@fix:phpcbf"
+        ],
+        "integration": [
+            "@integration:setup",
+            "@test:integration:run",
+            "@test:ci:psalm",
+            "@integration:teardown"
+        ],
         "post-install-cmd": [
-            "\"vendor/bin/mozart\" compose",
+            "@mozart-compose",
             "composer dump-autoload"
         ],
         "post-update-cmd": [
-            "\"vendor/bin/mozart\" compose",
+            "@mozart-compose",
             "composer dump-autoload"
+        ],
+        "test:composer": [
+            "composer validate"
+        ],
+        "test:phpcs": [
+            "phpcs"
+        ],
+        "fix:phpcbf": [
+            "phpcbf"
+        ],
+        "mozart-compose": [
+            "docker run --rm -v ${PWD}:/project/ coenjacobs/mozart:latest /mozart/bin/mozart compose"
+        ],
+        "integration:setup": [
+            "docker-compose up -d",
+            "echo Waiting for docker to become alive.",
+            "wget -q -O - --tries=10 localhost:8089/wp-admin",
+            "docker-compose run --rm wordpress-cli wp core install --url=localhost:8089 --title=Test --admin_user=admin --admin_password=password --admin_email=test@test.test",
+            "docker-compose run --rm wordpress-cli wp plugin activate lapisense"
+        ],
+        "test:integration:psalm": [
+            "docker-compose exec -w /var/www/html/wp-content/plugins/lapisense wordpress vendor/bin/psalm"
+        ],
+        "test:integration:run": [
+            "docker-compose exec -w /var/www/html/wp-content/plugins/lapisense wordpress vendor/bin/codecept run functional"
+        ],
+        "integration:teardown": [
+            "docker-compose down"
         ]
     }
 }

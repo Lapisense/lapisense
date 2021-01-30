@@ -3,4 +3,5 @@
     <description>The PSR-2 based coding standard for the Lapisense plugin.</description>
     <rule ref="PSR2"/>
     <file>./src</file>
+    <exclude-pattern>/Dependencies/*</exclude-pattern>
 </ruleset>
