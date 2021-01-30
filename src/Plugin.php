@@ -2,31 +2,31 @@
 
 namespace Lapisense;
 
-use Lapisense\Admin\Bootstrap as AdminBootstrap;
-use Lapisense\Api\Bootstrap as ApiBootstrap;
+use Lapisense\Dependencies\Pimple\Container;
 
-class Plugin
+class Plugin extends Container
 {
-    /** @var AdminBootstrap */
-    public $admin;
+    /** @var Bootstrap */
+    private $bootstrap;
 
-    /** @var ProductPostType */
-    public $productPostType;
-
-    /** @var ApiBootstrap */
-    public $api;
-
-    public function __construct()
+    public function __construct(array $values = [])
     {
-        $this->admin = new AdminBootstrap();
-        $this->productPostType = new ProductPostType();
-        $this->api = new ApiBootstrap();
+        parent::__construct($values);
+
+        $this->bootstrap = new Bootstrap($this);
     }
 
     public function setup():void
     {
-        $this->admin->setup();
-        $this->productPostType->setup();
-        $this->api->setup();
+        $this->bootstrap->setup();
+    }
+
+    /**
+     * @param string $class
+     * @return mixed
+     */
+    public function make(string $class)
+    {
+        return $this[$class];
     }
 }

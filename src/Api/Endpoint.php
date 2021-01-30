@@ -27,5 +27,5 @@ abstract class Endpoint
     abstract public function getMethod(): string;
     abstract public function getPermissionCallback(): callable;
 
-    abstract public function callback(WP_REST_Request $request): array;
+    abstract public function callback(WP_REST_Request $request): Response;
 }

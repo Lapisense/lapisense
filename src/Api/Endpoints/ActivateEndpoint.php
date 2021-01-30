@@ -3,6 +3,10 @@
 namespace Lapisense\Api\Endpoints;
 
 use Lapisense\Api\Endpoint;
+use Lapisense\Api\Response;
+use Lapisense\Api\Responses\ActivateResponse;
+use Lapisense\Api\Responses\FailedParametersReponse;
+use Lapisense\Contracts\ProductsRepository;
 use WP_REST_Request;
 
 class ActivateEndpoint extends Endpoint
@@ -29,11 +33,19 @@ class ActivateEndpoint extends Endpoint
         return 'POST';
     }
 
-    public function callback(WP_REST_Request $request): array
+    public function callback(WP_REST_Request $request): Response
     {
-        return array(
-            'all good' => 'bye',
-        );
+        $product_id = $request->get_param('product_id');
+
+        if (empty($product_id)) {
+            return new FailedParametersReponse();
+        }
+
+        /** @var ProductsRepository $repository */
+        $repository = lapisense()->make(ProductsRepository::class);
+        $product = $repository->getById($product_id);
+
+        return new ActivateResponse();
     }
 
     public function getPermissionCallback(): callable

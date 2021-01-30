@@ -3,6 +3,8 @@
 namespace Lapisense\Api\Endpoints;
 
 use Lapisense\Api\Endpoint;
+use Lapisense\Api\Response;
+use Lapisense\Api\Responses\DeactivateResponse;
 use WP_REST_Request;
 
 class DeactivateEndpoint extends Endpoint
@@ -29,11 +31,9 @@ class DeactivateEndpoint extends Endpoint
         return 'POST';
     }
 
-    public function callback(WP_REST_Request $request): array
+    public function callback(WP_REST_Request $request): Response
     {
-        return array(
-            'all good' => 'bye',
-        );
+        return new DeactivateResponse();
     }
 
     public function getPermissionCallback(): callable

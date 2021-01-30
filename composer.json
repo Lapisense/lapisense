@@ -15,7 +15,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "coenjacobs/migrator": "^0.2.0"
+        "coenjacobs/migrator": "^0.2.0",
+        "pimple/pimple": "^3.3"
     },
     "require-dev": {
         "php": "^7.3|^8.0",
@@ -30,7 +31,8 @@
             "classmap_directory": "/classes/dependencies/",
             "classmap_prefix": "Lapisense_",
             "packages": [
-                "coenjacobs/migrator"
+                "coenjacobs/migrator",
+                "pimple/pimple"
             ]
         }
     },
